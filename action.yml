@@ -18,6 +18,16 @@ inputs:
     description: 'The release url to set in the package.json'
     required: false
     default: ''
+  
+  unityReleaseUrl:
+    description: 'The unity release url to set in the package.json'
+    required: false
+    default: ''
+    
+  releaseVersion:
+    description: 'The release version to set in the package.json'
+    required: false
+    default: ''
     
   noVcc:
     description: 'Do not build the vcc package'
@@ -28,6 +38,11 @@ inputs:
     description: 'Do not build the unitypackage'
     required: false
     default: 'false'
+
+  customJsonFields:
+    description: 'Custom json fields'
+    required: false
+    default: ''
     
 outputs:
   vccPackagePath:
@@ -44,9 +59,15 @@ runs:
     - ${{ inputs.outputPath }}
     - '--releaseUrl'
     - ${{ inputs.releaseUrl }}
-    - '-novcc'
+    - '--unityReleaseUrl'
+    - ${{ inputs.unityReleaseUrl }}
+    - '--releaseVersion'
+    - ${{ inputs.releaseVersion }}
+    - '--novcc'
     - ${{ inputs.noVcc }}
-    - '-nounity'
+    - '--nounity'
     - ${{ inputs.NoUnityPackage }}
+    - '--customJsonFields'
+    - ${{ inputs.customJsonFields }}
     - '--action'
     - 'true'
